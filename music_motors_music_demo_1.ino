@@ -9,7 +9,7 @@ byte waveFormArray[] = { SINE,
                         TRIANGLE,
                         SAW,
                         FUZZ,
-                        DIGI1,
+                        /* DIGI1,
                         DIGI2,
                         DIGI3,
                         DIGI4,
@@ -18,7 +18,7 @@ byte waveFormArray[] = { SINE,
                         TAN1,
                         TAN2,
                         TAN3,
-                        TAN4
+                        TAN4 */
                        };
 
 void setup() {
@@ -32,6 +32,10 @@ void loop() {
   
   int freq = map(posA, 0, 1023, 500, 1500);
   int freq = map(posB, 0, 1023, 500, 1500);
+  
+  int waveform = map(posB, 30, 1023, 0, 15);
+  
+  Music.setWaveform(waveFormArray[waveform]);
   
   Music.setFrequency1(freqA); 
   Music.setFrequency2(freqB);
