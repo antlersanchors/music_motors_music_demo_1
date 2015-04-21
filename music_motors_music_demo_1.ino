@@ -3,6 +3,11 @@
 #include <EEPROM.h>
 #include <M3T3.h>
 
+long tick = 0;
+
+int c = 0;
+int last_pos = 0;
+
 byte waveFormArray[] = { SINE,
                         SQUARE,
                         PULSE,
@@ -22,6 +27,10 @@ byte waveFormArray[] = { SINE,
                        };
 
 void setup() {
+  
+  tick = millis();
+  last_pos = analogRead(A1);
+  
   Music.init();
   
   Music.setWaveform(SINE);
@@ -29,6 +38,11 @@ void setup() {
 }
 
 void loop() {
+  
+  long tick_now = millis();
+  int current_pos = analogRead(A1);
+  
+  
   int posA = analogRead(A1);
   int posB = analogRead(A9);
   
