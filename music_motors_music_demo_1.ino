@@ -23,6 +23,8 @@ byte waveFormArray[] = { SINE,
 
 void setup() {
   Music.init();
+  
+  Music.setWaveform(SINE);
 
 }
 
@@ -30,16 +32,11 @@ void loop() {
   int posA = analogRead(A1);
   int posB = analogRead(A9);
   
-  int freq = map(posA, 0, 1023, 500, 1500);
-  int freq = map(posB, 0, 1023, 500, 1500);
+  int freqA = map(posA, 0, 1023, 500, 1500);
+  int freqB = map(posB, 0, 1023, 500, 1500);
   
-  int waveform = map(posB, 30, 1023, 0, 15);
-  
-  Music.setWaveform(waveFormArray[waveform]);
-  
-  Music.setFrequency1(freqA); 
-  Music.setFrequency2(freqB);
-  
-  Music.setGain() // this one takes a float value between 0-1.0
+  Music.setFrequency1((float)freqA); 
+  Music.setFrequency2((float)freqB);
+
 
 }
