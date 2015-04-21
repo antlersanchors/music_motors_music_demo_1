@@ -50,6 +50,10 @@ void loop() {
     int current_pos = analogRead(A1);
     int dx = last_pos - current_pos;
     float vel = (float) dx / (float) dt;
+    
+    if (abs(vel) >= 1.0) {
+      set_freq(vel);
+    }
 
     if (c % 15 == 0) {
       Serial.println(vel);
@@ -68,5 +72,13 @@ void loop() {
 
   Music.setFrequency1((float)freqA);
   Music.setFrequency2((float)freqB);
+
+}
+
+void set_freq(float vel) {
+  float vel_amp = abs(vel);
+  float freq = map(vel_amp, 1, 11, 100, 1500);
+  
+  Music.setFrequency(freq);
 
 }
